@@ -58,7 +58,7 @@
 		<nav class="header-menu">
 			<ul>
 			
-				<li><a href="/">主页</a></li>
+				<li><a href="/">Home</a></li>
 	        
 			</ul>
 		</nav>
@@ -128,7 +128,7 @@
 				<ul style="width: 50%">
 				
 				
-					<li style="width: 100%"><a href="/">主页</a></li>
+					<li style="width: 100%"><a href="/">Home</a></li>
 		        
 				</ul>
 			</nav>
@@ -144,6 +144,97 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-2014-04-03-notes-on-android-achievements" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/04/03/2014-04-03-notes-on-android-achievements/">Notes on Android Achievements</a>
+    </h1>
+  
+
+        
+        <a href="/2014/04/03/2014-04-03-notes-on-android-achievements/" class="archive-article-date">
+  	<time datetime="2014-04-02T20:16:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2014-04-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Here I would like to share some of our experience supporting <a href="https://developers.google.com/games/services/common/concepts/achievements" target="_blank">Google Play game service’s achievement</a> in our latest game <a href="https://play.google.com/store/apps/details?id=com.monkeypotion.jadeninja" target="_blank">Jade Ninja</a>, and hoping this will save you some time with Android achievement.</p>
+<h2 id="Check-Carefully-Before-Publish-Achievement"><a href="#Check-Carefully-Before-Publish-Achievement" class="headerlink" title="Check Carefully Before Publish Achievement"></a>Check Carefully Before Publish Achievement</h2><p>The most important note to take is that, once the achievement is published (even your APK is still in alpha or beta state), you cannot remove it or edit some of the properties (such as <a href="https://developers.google.com/games/services/common/concepts/achievements#state" target="_blank">revealed/hidden</a> state or <a href="https://developers.google.com/games/services/common/concepts/achievements#incremental_achievements" target="_blank">incremental type</a>). This causes a few trouble to our game.</p>
+<p>First, some achievements I thought is incremental, turned out to be non-incremental. And I found this issue after achievement published so I cannot change it on developer console. To fix this problem, instead of calling <a href="https://developer.android.com/reference/com/google/android/gms/games/achievement/Achievements.html#unlock(com.google.android.gms.common.api.GoogleApiClient, java.lang.String)" target="_blank">unlock</a>, I call <a href="https://developer.android.com/reference/com/google/android/gms/games/achievement/Achievements.html#setSteps(com.google.android.gms.common.api.GoogleApiClient, java.lang.String, int)" target="_blank">setSteps</a> with max step when player unlocked it.</p>
+<p>Another issue is achievement may turned out to be redundant. There are near 100 achievements in our game, which is quite a lot. I made a mistake to add one redundant achievement. When I found out, again after published, there is no way to remove it. It just sits there quietly, player’s never gona be able to unlock it… (I am tempted to change the title of that achievement to “there are achievement that you just never be able to unlock…”)</p>
+<h2 id="Incremental-Steps"><a href="#Incremental-Steps" class="headerlink" title="Incremental Steps"></a>Incremental Steps</h2><p>Another note that can save you time is about incremental steps, the value must between 2 to 1,000,000. In our game, some achievements such as total score, could easily pass over 1,000,000. So a good practice is to <strong>normalize</strong> your achievement steps. We choose to normalize our achievement with 100 steps:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ACHIEVEMENT_STEPS = GAME_STEPS x 100 / MAX_GAME_STEPS</span><br></pre></td></tr></table></figure></p>
+<p>In other words, all incremental achievements are unlocked when it reaches 100 steps.</p>
+<h2 id="String-Resources"><a href="#String-Resources" class="headerlink" title="String Resources"></a>String Resources</h2><p>Just a reminder: you don’t have to keyin all achievement IDs manually. There is a “get resource” button at bottom of achievement list in developer console. Copy paste to your res/values/some.xml. Notice do not paste them to string.xml, because lint will complain about not translating them into other languages.</p>
+<h2 id="Achievement-Points"><a href="#Achievement-Points" class="headerlink" title="Achievement Points"></a>Achievement Points</h2><p>There is a “point” field in each achiement. Valid value is between 5 to 200, and can only be multiple of 5. For all acheivements, total points combined should &lt;= 1000. Again, our near 100 achievements pose some challenge in distributing these point values. It took me some time to adjust these points so they reflect the difficulty of the achievements (which is not necessary for now but could be relevant in future update of achievement), and keep combined value &lt;= 1000. (In fact we made it to be exacly 1000 points.)</p>
+<h2 id="Compare-With-iOS-Achievements"><a href="#Compare-With-iOS-Achievements" class="headerlink" title="Compare With iOS Achievements"></a>Compare With iOS Achievements</h2><p>We developed our game for iOS first, and then ported to Android. Some achievement logic designed for iOS may not apply to Android.</p>
+<p>The most obvious different is achievement description. On iOS, there are different descriptions for before and after achievement unlocked. On Android there is only one description, so you may need to adjust the description for Android.</p>
+<p>Another issue is repeatable. iOS achievement can be unlocked, then restart again. On Android, restart an unlocked achievement results in a strange state: the achievement looks like unlocked, but is shown in grayscale and grouped with unlocked ones. In our game, we don’t repeat achievement for Android.</p>
+<p>Achievement id in iOS is positive integer, while id in Android is developer console generated string. To reuse our iOS logic, we just build a map from integer (iOS) to String (Android).</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>To conclude my experience supporting achievement, I think it do make the game play more fun and challenging. But remember to make it obvious for players to check their achievements. Before we do so, our players keep asking what are the boxes come and go during game play. Then we realize most players are not awared about achievements. We put the <a href="https://developers.google.com/games/services/downloads/" target="_blank">official achievement icon</a> on main menu, and on score summary after every level so they can check their achievement easily.</p>
+<p><img class="center" src="http://user-image.logdown.io/user/5012/blog/5005/post/192357/qxbQtVqT763XKUSWjdpV_main_menu_en.png" alt="main_menu_en.png"><br><a href="https://play.google.com/store/apps/details?id=com.monkeypotion.jadeninja" target="_blank">Jade Ninja</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/android//" class="article-tag-list-link color3">android</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/android/achievement//" class="article-tag-list-link color2">achievement</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2014/04/03/2014-04-03-notes-on-android-achievements/">Expand All >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-2013-12-21-what-this-era-of-uncertainty" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">

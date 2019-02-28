@@ -6,18 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://michael-wang.github.io">
-  <title>Category: JNI | Irregular Game Dev</title>
+  <title>openglredbook | Irregular Game Dev</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="I enjoy handmade games, here you can find info about how to build game by hand.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Irregular Game Dev">
-<meta property="og:url" content="https://michael-wang.github.io/categories/android/JNI/index.html">
+  <meta name="description" content="What’s This All About?I choose to pick up my OpenGL with the red book. And I find it helps to write notes about what I’ve learned. So I’ll do it here, as blog articles. Also, I pick Go as the language">
+<meta property="og:type" content="article">
+<meta property="og:title" content="openglredbook">
+<meta property="og:url" content="https://michael-wang.github.io/2019/02/28/openglredbook/index.html">
 <meta property="og:site_name" content="Irregular Game Dev">
-<meta property="og:description" content="I enjoy handmade games, here you can find info about how to build game by hand.">
+<meta property="og:description" content="What’s This All About?I choose to pick up my OpenGL with the red book. And I find it helps to write notes about what I’ve learned. So I’ll do it here, as blog articles. Also, I pick Go as the language">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-02-28T08:34:41.057Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Irregular Game Dev">
-<meta name="twitter:description" content="I enjoy handmade games, here you can find info about how to build game by hand.">
+<meta name="twitter:title" content="openglredbook">
+<meta name="twitter:description" content="What’s This All About?I choose to pick up my OpenGL with the red book. And I find it helps to write notes about what I’ve learned. So I’ll do it here, as blog articles. Also, I pick Go as the language">
   
     <link rel="alternative" href="/atom.xml" title="Irregular Game Dev" type="application/atom+xml">
   
@@ -143,68 +144,252 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-openglredbook" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2013" class="archive-year">2013</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2013/10/21/2013-10-21-log-of-a-jni-issue/" class="archive-article-date">
-  	<time datetime="2013-10-20T19:26:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2013-10-21</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2013/10/21/2013-10-21-log-of-a-jni-issue/">Log of a JNI Issue</a>
+    <h1 class="article-title" itemprop="name">
+      openglredbook
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/android//" class="article-tag-list-link color3">android</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/android/JNI//" class="article-tag-list-link color4">JNI</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/android/JNI/singleton//" class="article-tag-list-link color5">singleton</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+        <a href="/2019/02/28/openglredbook/" class="archive-article-date">
+  	<time datetime="2019-02-28T08:34:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="What’s-This-All-About"><a href="#What’s-This-All-About" class="headerlink" title="What’s This All About?"></a>What’s This All About?</h1><p>I choose to pick up my OpenGL with the <a href="https://www.amazon.com/dp/0134495497/ref=cm_sw_r_tw_dp_U_x_66QCCb971KXYJ" target="_blank" rel="noopener">red book</a>. And I find it helps to write notes about what I’ve learned. So I’ll do it here, as blog articles.</p>
+<p>Also, I pick Go as the language, as I find it interesting and also mature enough to do OpenGL. I translate examples of the book into Go, and make it public here: <a href="https://gitlab.com/michael.wang/opengl_guide_golang" target="_blank" rel="noopener">https://gitlab.com/michael.wang/opengl_guide_golang</a>. You can see how to setup for golang to do OpenGL in README there.</p>
+<p>So here we go. I found chapter 1 quite difficult to read, for it contains a lot of information. Most looks like not useful but are important concept for later topics.</p>
+<h2 id="Major-Operations-of-OpenGL-Application"><a href="#Major-Operations-of-OpenGL-Application" class="headerlink" title="Major Operations of OpenGL Application"></a>Major Operations of OpenGL Application</h2><ol>
+<li>Data: to construct shapes from primitives (points, lines, triangles).</li>
+<li>Run shaders on input primitives.</li>
+<li>Rasterization: convert primitives into fragments.</li>
+<li>Run fragment shader on fragments.</li>
+<li>[Optional] Per-fragment operations.</li>
+</ol>
+<h2 id="OpenGL-Syntax"><a href="#OpenGL-Syntax" class="headerlink" title="OpenGL Syntax"></a>OpenGL Syntax</h2><ul>
+<li>API starts with ‘gl’ followed by camel cased words, example: ‘glBindVertexArray’.</li>
+<li>Constant: starts with ‘GL’ followed by underscore separaed, capitalized words, example: ‘GL_COLOR’.</li>
+<li>For same APIs with different parameters, different suffix are used. Example: ‘glUniform2f’ and ‘glUniform3fv’. (See <a href="#API-Suffixes">API Suffixes</a>.) 2f means two floating-point values. 3fv means array (vector) of 3 floating-porint values.</li>
+</ul>
+<h2 id="API-Suffixes"><a href="#API-Suffixes" class="headerlink" title="API Suffixes"></a>API Suffixes</h2><table>
+<thead>
+<tr>
+<th>Suffix</th>
+<th>Data Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>b</td>
+<td>8-bit integer</td>
+</tr>
+<tr>
+<td>s</td>
+<td>16-bit integer</td>
+</tr>
+<tr>
+<td>i</td>
+<td>32-bit integer</td>
+</tr>
+<tr>
+<td>f</td>
+<td>32-bit floating-point</td>
+</tr>
+<tr>
+<td>d</td>
+<td>64-bit floating-point</td>
+</tr>
+<tr>
+<td>ub</td>
+<td>8-bit unsigned integer</td>
+</tr>
+<tr>
+<td>us</td>
+<td>16-bit unsigned integer</td>
+</tr>
+<tr>
+<td>ui</td>
+<td>32-bit unsigned integer</td>
+</tr>
+</tbody>
+</table>
+<h2 id="OpenGL-Rendering-Pipeline"><a href="#OpenGL-Rendering-Pipeline" class="headerlink" title="OpenGL Rendering Pipeline"></a>OpenGL Rendering Pipeline</h2><p>I don’t what these stages means, but trying to memorize them so I got the whole picture and know where I am in later chapters:</p>
+<div id="flowchart-0" class="flow-chart"></div>
 
+<h2 id="Example-triangles"><a href="#Example-triangles" class="headerlink" title="Example: triangles"></a>Example: triangles</h2><p><a href="https://github.com/openglredbook/examples/tree/master/src/01-triangles/" target="_blank" rel="noopener">Book source</a><br><a href="https://gitlab.com/michael.wang/opengl_guide_golang/blob/master/src/01-triangles/" target="_blank" rel="noopener">Go version</a><br>You may want to keep OpenGL reference handy: <a href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/" target="_blank" rel="noopener">https://www.khronos.org/registry/OpenGL-Refpages/gl4/</a></p>
+<p>The first <code>init()</code> function deal with platform related stuff, no discussion here.</p>
+<p>Second <code>init()</code> function is the real OpenGL code. Here looks like we have to prepare something called ‘vertex array objects’, meaning there are multiple objects called ‘vertex array’ (caution: array of ‘array of vertex’). To prepare these data, we encounter first set of OpenGL APIs:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">glCreateVertexArrays</span><span class="params">(GLsizei n, GLuint *arrays)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">glBindVertexArray</span><span class="params">(GLuint <span class="built_in">array</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">glDeleteVertexArrays</span><span class="params">(GLsizei n, <span class="keyword">const</span> GLuint *arrays)</span></span>;</span><br><span class="line"><span class="function">GLboolean <span class="title">glIsVertexArray</span><span class="params">(GLuint <span class="built_in">array</span>)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>Notice the sample code mistakenly use <code>glGenVertexArrays</code> instead of intended <code>glCreateVertexArrays</code>, I fixed it in golang version.</p>
+<p>After we created the (vertex array) objects, we have to bind it so they can be ‘active’, whatever active means. For now we accept in OpenGL only active objects can be used to draw things.</p>
+<p>Another concept to understand, is that vertex array objects do not hold real data that we use to draw things. The data are holded by buffer objects. So to manage the buffers, we need seconds set of APIs:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">glCreateBuffers</span><span class="params">(GLsizei n, GLuint *buffers)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">glBindBuffer</span><span class="params">(GLenum target, GLuint buffer)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">glDeleteBuffers</span><span class="params">(GLsizei n, <span class="keyword">const</span> GLuint *buffers)</span></span>;</span><br><span class="line"><span class="function">GLboolean <span class="title">glIsBuffer</span><span class="params">(GLuint buffer)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>Here again, buffer has to be binded (so became ‘active’) before we can using it to draw things.</p>
+<p>To actually load the data (from main memory to video memory, I suppose), we use:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">glNamedBufferStorage</span><span class="params">(GLuint buffer, GLsizeiptr size, <span class="keyword">const</span> <span class="keyword">void</span> *data, GLbitfield flags)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>Notice the sample code use <code>glBufferStorage</code> instead of <code>glNamedBufferStorage</code>, I fixed it in golang version.</p>
+<p>The value of the data is worth noticing. They are all in range [-1, 1], it’s called normalized-device coordinates. More on this in later chapters.</p>
+<h2 id="The-Shader-Program"><a href="#The-Shader-Program" class="headerlink" title="The Shader Program"></a>The Shader Program</h2><p>Then we (as newbie to computer graphics) entering the territory of this ‘shader’ thing. These shaders are used to actually do the drawing (with the data we prepared above). There are many type of shaders, here we use two of them: vertex and fragment shaders.</p>
+<p>To use a shader, we need to compile and link it, just like other computer programs. The procedule is quite simple:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">GLuint <span class="title">glCreateProgram</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">glShaderSource</span><span class="params">(GLuint shader, GLsizei count, <span class="keyword">const</span> GLchar **<span class="built_in">string</span>, <span class="keyword">const</span> GLint *length)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">glCompileShader</span><span class="params">(GLuint shader)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">glAttachShader</span><span class="params">(GLuint program, GLuint shader)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">glLinkProgram</span><span class="params">(GLuint program)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">glUseProgram</span><span class="params">(GLuint program)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>At first we create a program (something video hardware can execute I suppose). Then we compile the (shader) source code, attach it to the program. When all source codes are ready, we link them. We ‘use’ the program with last API above, which again, make the program ‘active’ (ready to be used).</p>
+<p>Now the harder part of the shader thing, the source code of first shader:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#version 450 core</span></span><br><span class="line"></span><br><span class="line">layout (location = <span class="number">0</span>) in vec4 vPosition;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span></span><br><span class="line">main()</span><br><span class="line">&#123;</span><br><span class="line">	gl_Position = vPosition;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Let’s try to guess what’s going on here. First it choose a version (450). Then it looks like declare a variable named <code>vPosition</code> of type vec4, which I guess is vector of four elements. In the main function, we set value of vPosition to a variable called <code>gl_Position</code>.</p>
+<p>Notice the point data we passed in only contains 2 coordinates:</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">vertices := []<span class="keyword">float32</span>&#123;</span><br><span class="line">	<span class="number">-0.90</span>, <span class="number">-0.90</span>, <span class="number">0.85</span>, <span class="number">-0.90</span>, <span class="number">-0.90</span>, <span class="number">0.85</span>, <span class="comment">// Triangle 1</span></span><br><span class="line">	<span class="number">0.90</span>, <span class="number">-0.85</span>, <span class="number">0.90</span>, <span class="number">0.90</span>, <span class="number">-0.85</span>, <span class="number">0.90</span>, <span class="comment">// Triangle 2</span></span><br><span class="line">&#125;</span><br><span class="line">...</span><br><span class="line">gl.NamedBufferStorage(Buffers[ArrayBuffer], <span class="number">4</span>*<span class="built_in">len</span>(vertices), gl.Ptr(vertices), <span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<p>But in vertex shader source code, we declare vPosition as vec4, which supposed to have 4 coordinates. According to the book, OpenGL ‘automatically’ fill in any missing value with default value <code>(0.0, 0.0, 0.0, 1.0)</code>. Yeah, 4 values (instead of 3 of x, y, z in 3D coordinates).Let’s figure out that later, though I guess that has something to do with matrix operation.</p>
+<p>The <code>layout (location = 0)</code> means to use 0th shader attribute location. You can see we set this value (0) in first parameter of <code>VertexAttribPointer</code>:</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gl.VertexAttribPointer(vPosition, <span class="number">2</span>, gl.FLOAT, <span class="literal">false</span>, <span class="number">0</span>, <span class="literal">nil</span>)</span><br><span class="line">gl.EnableVertexAttribArray(vPosition)</span><br></pre></td></tr></table></figure>
+<p>Last thing to notice about the vertex shader source code, is the <code>gl_Position</code> variable. It’s defined by OpenGL (all begin with <code>gl_</code> prefix). And all we do is copy <code>vPosition</code> to it.</p>
+<p>Next let’s turn on to fragment shader source code:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#version 450 core</span></span><br><span class="line"></span><br><span class="line">layout (location = <span class="number">0</span>) out vec4 fColor;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	fColor = vec4(<span class="number">0.5</span>, <span class="number">0.4</span>, <span class="number">0.8</span>, <span class="number">1.0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>The book says no much about this shader code. We can guess the <code>fColor</code> declaration of a variable about color, and it’s meant to be output to someone within OpenGL.</p>
+<p>One should pay attention to <code>glVertexAttribPointer</code>, as it’s the only real work we do in the sample code: to specify triangle’s coordinates. (the color of triangles is fixed in shader source code.) It’s designed to be flexible (to be able to handle data with all kinds of memory structure) so the 6 parameters.</p>
+<p>Finally the call to <code>EnableVertexAttribArray</code>, looks like we can specify multiple vertex attribute arrays, and enable one of them.</p>
+<p>Notice the vertex attrib array we are dealing with, are part of the vertex array object we create and bind in early part of the second init function. So call to <code>glVertexAttribPointer</code> imply we already bind one vertex array object. To modify state of un-binded vertex array object, we have to use another set of APIs: <code>glEnableVertexArrayAttrib</code>, <code>glVertexArrayAttribFormat</code>, <code>glVertexArrayVertexBuffers</code>.</p>
+<p>Now everything all set, we can do the drawing:<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">display</span><span class="params">()</span></span> &#123;</span><br><span class="line">	black := []<span class="keyword">float32</span>&#123;<span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">0.0</span>&#125;</span><br><span class="line">	gl.ClearBufferfv(gl.COLOR, <span class="number">0</span>, &amp;black[<span class="number">0</span>])</span><br><span class="line"></span><br><span class="line">	gl.BindVertexArray(VAOs[Triangles])</span><br><span class="line">	gl.DrawArrays(gl.TRIANGLES, <span class="number">0</span>, NumVertices)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>We clear screen to black, bind the triangles vertex array object (make it active), ask OpenGL to draw it.</p>
+<p>The clear screen actually means to set ‘color buffer’ of current ‘framebuffer’ to specific value. Framebuffer is a chunk of (video) memory consumed by video hardware to generate the pixels we see on screen. Within it, there are color buffer, depth buffer, and stencil buffer. More detail on later chapters.</p>
+<p>Last call <code>DrawArrays</code> to draw our data as triangles. We can pass different value as first argument. I find it quite familiar with <code>GL_LINE_LOOP</code>, as it looks like early day games I played when I was a child. Try it yourself!</p>
+<p><script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.6.5/flowchart.min.js"></script><textarea id="flowchart-0-code" style="display: none">vex_data=>operation: Vertex
+Data
+vex_shader=>operation: Vertex
+Shader:>https://www.khronos.org/opengl/wiki/Vertex_Shader[blank]
+tess_control=>operation: Tessellation
+Control
+Shader:>https://www.khronos.org/opengl/wiki/Tessellation_Control_Shader[blank]
+tess_eval=>operation: Tessellation
+Evaluation
+Shader:>https://www.khronos.org/opengl/wiki/Tessellation_Evaluation_Shader[blank]
+geo_shader=>operation: Geometry
+Shader:>https://www.khronos.org/opengl/wiki/Geometry_Shader[blank]
+prim_setup=>operation: Primitive
+Assembly:>https://www.khronos.org/opengl/wiki/Primitive_Assembly[blank]
+cull_clip=>operation: Culling
+and
+Clipping
+rast=>operation: Rasterization:>https://www.khronos.org/opengl/wiki/Rendering_Pipeline_Overview#Rasterization[blank]
+frag_shader=>operation: Fragment
+Shader:>https://www.khronos.org/opengl/wiki/Fragment_Shader[blank]
 
+vex_data(right)->vex_shader->tess_control(right)->tess_eval(right)->geo_shader->prim_setup(right)->cull_clip(right)->rast->frag_shader</textarea><textarea id="flowchart-0-options" style="display: none">{"scale":1,"line-width":2,"line-length":50,"text-margin":10,"font-size":12}</textarea><script>  var code = document.getElementById("flowchart-0-code").value;  var options = JSON.parse(decodeURIComponent(document.getElementById("flowchart-0-options").value));  var diagram = flowchart.parse(code);  diagram.drawSVG("flowchart-0", options);</script></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://michael-wang.github.io/2019/02/28/openglredbook/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2016/04/07/2016-04-07-rails-study-notes-asset-pipeline/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Rails 學習筆記 - Asset Pipeline</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -227,10 +412,10 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
-		isCategory: true,
+		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
 		root: "/",
