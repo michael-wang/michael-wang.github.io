@@ -172,7 +172,7 @@
 <li>The eco system of vscode’s <a href="https://marketplace.visualstudio.com/" target="_blank" rel="noopener">Marketplace</a> is very healthy. Extensions are good enough for me to work on lots of topics.</li>
 <li>With WSL, I can work in Linux under Windows, while coding with vscode, the best combination within my experience.</li>
 </ol>
-<h2 id="So-what’s-the-problem"><a href="#So-what’s-the-problem" class="headerlink" title="So what’s the problem?"></a>So what’s the problem?</h2><p>I got 2 issues trying to setup the environment described above:</p>
+<h1 id="So-what’s-the-problem"><a href="#So-what’s-the-problem" class="headerlink" title="So what’s the problem?"></a>So what’s the problem?</h1><p>I got 2 issues trying to setup the environment described above:</p>
 <ol>
 <li>How to setup Go cleanly? Do I need <a href="https://github.com/moovweb/gvm" target="_blank" rel="noopener">gvm</a>? What’s the proper path for $GOPATH?</li>
 <li>The extension of <a href="https://marketplace.visualstudio.com/items?itemName=golang.go" target="_blank" rel="noopener">Go</a> is a must have, but I just can’t install extension while vscode is remotely connected to WSL.</li>
@@ -180,13 +180,13 @@
 <p>So I figured out the best steps to steup the environment, and would like to record here, which may be able to help others.</p>
 <h2 id="Prepare-WSL2"><a href="#Prepare-WSL2" class="headerlink" title="Prepare WSL2"></a>Prepare WSL2</h2><p><a href="https://docs.microsoft.com/zh-tw/windows/wsl/install-win10" target="_blank" rel="noopener">Follow the steps</a> to enable WSL 2. My choice of Linux is Ubuntu 18.04.</p>
 <p>Notice: I strongly recommend a good terminal to access WSL, and I find <a href="https://www.microsoft.com/en-us/p/windows-terminal/9n0dx20hk701?activetab=pivot:overviewtab" target="_blank" rel="noopener">Windows Terminal</a> is becoming a good choice for me.</p>
-<h2 id="Install-Go-in-WSL"><a href="#Install-Go-in-WSL" class="headerlink" title="Install Go in WSL"></a>Install Go in WSL</h2><p>Just follow the <a href="https://golang.org/doc/install" target="_blank" rel="noopener">official guide</a> to install Go under Linux.</p>
+<h1 id="Install-Go-in-WSL"><a href="#Install-Go-in-WSL" class="headerlink" title="Install Go in WSL"></a>Install Go in WSL</h1><p>Just follow the <a href="https://golang.org/doc/install" target="_blank" rel="noopener">official guide</a> to install Go under Linux.</p>
 <p>Notice: I need sudo to put files to /usr/local, like this: <code>sudo -C /usr/local -xzf xxx.tar.gz</code>.</p>
 <p>I myself follow Go convention, to let $GOPATH points to <code>$HOME/go</code>, and put my source code to <code>$HOME/go/src</code>. And besure to use go module. Make sure you understand everything of the guide: <a href="https://golang.org/doc/code.html" target="_blank" rel="noopener">How to Write Go Code</a>. Trust me, it saves a lot of pain.</p>
-<h2 id="Code-with-Vscode"><a href="#Code-with-Vscode" class="headerlink" title="Code with Vscode"></a>Code with Vscode</h2><p>Here comes the tricky part. I can open vscode under WSL by <code>code .</code>. But I always failed to install the Go extension, which is a must have. In my case (with cable network, not wifi), it has something to do with network’s MTU setting under WSL.</p>
+<h1 id="Code-with-Vscode"><a href="#Code-with-Vscode" class="headerlink" title="Code with Vscode"></a>Code with Vscode</h1><p>Here comes the tricky part. I can open vscode under WSL by <code>code .</code>. But I always failed to install the Go extension, which is a must have. In my case (with cable network, not wifi), it has something to do with network’s MTU setting under WSL.</p>
 <p><code>sudo ifconfig eth0 mtu 1400</code><br>(You may need to change 1400 to other value in your case.)</p>
 <p>Credit goes to <a href="https://github.com/microsoft/vscode-remote-release/issues/3152" target="_blank" rel="noopener">this issue report</a>. Once again, a healthy eco system is very important, so there are people answering all kinds of weired question I may encounter.</p>
-<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>To this point, you already be able to coding in Golang under WSL with vscode.</p>
+<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>To this point, you already be able to coding in Golang under WSL with vscode.</p>
 <p>I would like to remind a small but important rule: keep it simple.<br>While working on the dev environment, there are lots of guides tell me to install all kinds of plugins/extensions, change this and that settings.<br>Eventually, it almost proves to be unnecessary. Just do what’s really necessary, and leave others until we really have to do it.</p>
 <p>That’s it, and enjoy coding in Go!</p>
 
@@ -197,6 +197,25 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">golang</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">wsl</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">vscode</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
