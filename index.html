@@ -6,20 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://michael-wang.github.io">
-  <title>Irregular Game Dev</title>
+  <title>Michael Wang&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="I enjoy handmade games, here you can find info about how to build game by hand.">
+  <meta name="description" content="Software engineer, crypto fund manager, gamer.">
+<meta name="keywords" content="Golang, Dart, Flutter, Bitcoin.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Irregular Game Dev">
+<meta property="og:title" content="Michael Wang&#39;s Blog">
 <meta property="og:url" content="https://michael-wang.github.io/index.html">
-<meta property="og:site_name" content="Irregular Game Dev">
-<meta property="og:description" content="I enjoy handmade games, here you can find info about how to build game by hand.">
+<meta property="og:site_name" content="Michael Wang&#39;s Blog">
+<meta property="og:description" content="Software engineer, crypto fund manager, gamer.">
 <meta property="og:locale" content="default">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Irregular Game Dev">
-<meta name="twitter:description" content="I enjoy handmade games, here you can find info about how to build game by hand.">
+<meta name="twitter:title" content="Michael Wang&#39;s Blog">
+<meta name="twitter:description" content="Software engineer, crypto fund manager, gamer.">
   
-    <link rel="alternative" href="/atom.xml" title="Irregular Game Dev" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="Michael Wang&#39;s Blog" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -52,7 +53,7 @@
 		  <h1 class="header-author"><a href="/">Michael Wang</a></h1>
 		</hgroup>
 		
-		<p class="header-subtitle">Game Development Blog</p>
+		<p class="header-subtitle">Mostly programming related</p>
 		
 
 		<nav class="header-menu">
@@ -102,7 +103,7 @@
 			  <h1 class="header-author js-header-author">Michael Wang</h1>
 			</hgroup>
 			
-			<p class="header-subtitle"><i class="icon icon-quo-left"></i>Game Development Blog<i class="icon icon-quo-right"></i></p>
+			<p class="header-subtitle"><i class="icon icon-quo-left"></i>Mostly programming related<i class="icon icon-quo-right"></i></p>
 			
 			
 			
@@ -144,6 +145,91 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-2020-09-06-golang-wsl-and-vscode" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/09/06/2020-09-06-golang-wsl-and-vscode/">Golang, WSL, and Vscode</a>
+    </h1>
+  
+
+        
+        <a href="/2020/09/06/2020-09-06-golang-wsl-and-vscode/" class="archive-article-date">
+  	<time datetime="2020-09-06T13:34:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-06</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Programming <a href="https://golang.org/" target="_blank" rel="noopener">Go</a> under Windows 10 with <a href="https://docs.microsoft.com/windows/wsl/about" target="_blank" rel="noopener">WSL</a> and <a href="https://code.visualstudio.com/" target="_blank" rel="noopener">vscode</a> has becoming a top choice for me. Reasons being:</p>
+<ol>
+<li>Vscode is my top editor choice in recent years. Before vscode, it was vim. With vscode, I can even enable <a href="https://marketplace.visualstudio.com/items?itemName=vscodevim.vim" target="_blank" rel="noopener">Vim</a> within it.</li>
+<li>The eco system of vscode’s <a href="https://marketplace.visualstudio.com/" target="_blank" rel="noopener">Marketplace</a> is very healthy. Extensions are good enough for me to work on lots of topics.</li>
+<li>With WSL, I can work in Linux under Windows, while coding with vscode, the best combination within my experience.</li>
+</ol>
+<h2 id="So-what’s-the-problem"><a href="#So-what’s-the-problem" class="headerlink" title="So what’s the problem?"></a>So what’s the problem?</h2><p>I got 2 issues trying to setup the environment described above:</p>
+<ol>
+<li>How to setup Go cleanly? Do I need <a href="https://github.com/moovweb/gvm" target="_blank" rel="noopener">gvm</a>? What’s the proper path for $GOPATH?</li>
+<li>The extension of <a href="https://marketplace.visualstudio.com/items?itemName=golang.go" target="_blank" rel="noopener">Go</a> is a must have, but I just can’t install extension while vscode is remotely connected to WSL.</li>
+</ol>
+<p>So I figured out the best steps to steup the environment, and would like to record here, which may be able to help others.</p>
+<h2 id="Prepare-WSL2"><a href="#Prepare-WSL2" class="headerlink" title="Prepare WSL2"></a>Prepare WSL2</h2><p><a href="https://docs.microsoft.com/zh-tw/windows/wsl/install-win10" target="_blank" rel="noopener">Follow the steps</a> to enable WSL 2. My choice of Linux is Ubuntu 18.04.</p>
+<p>Notice: I strongly recommend a good terminal to access WSL, and I find <a href="https://www.microsoft.com/en-us/p/windows-terminal/9n0dx20hk701?activetab=pivot:overviewtab" target="_blank" rel="noopener">Windows Terminal</a> is becoming a good choice for me.</p>
+<h2 id="Install-Go-in-WSL"><a href="#Install-Go-in-WSL" class="headerlink" title="Install Go in WSL"></a>Install Go in WSL</h2><p>Just follow the <a href="https://golang.org/doc/install" target="_blank" rel="noopener">official guide</a> to install Go under Linux.</p>
+<p>Notice: I need sudo to put files to /usr/local, like this: <code>sudo -C /usr/local -xzf xxx.tar.gz</code>.</p>
+<p>I myself follow Go convention, to let $GOPATH points to <code>$HOME/go</code>, and put my source code to <code>$HOME/go/src</code>. And besure to use go module. Make sure you understand everything of the guide: <a href="https://golang.org/doc/code.html" target="_blank" rel="noopener">How to Write Go Code</a>. Trust me, it saves a lot of pain.</p>
+<h2 id="Code-with-Vscode"><a href="#Code-with-Vscode" class="headerlink" title="Code with Vscode"></a>Code with Vscode</h2><p>Here comes the tricky part. I can open vscode under WSL by <code>code .</code>. But I always failed to install the Go extension, which is a must have. In my case (with cable network, not wifi), it has something to do with network’s MTU setting under WSL.</p>
+<p><code>sudo ifconfig eth0 mtu 1400</code><br>(You may need to change 1400 to other value in your case.)</p>
+<p>Credit goes to <a href="https://github.com/microsoft/vscode-remote-release/issues/3152" target="_blank" rel="noopener">this issue report</a>. Once again, a healthy eco system is very important, so there are people answering all kinds of weired question I may encounter.</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>To this point, you already be able to coding in Golang under WSL with vscode.</p>
+<p>I would like to remind a small but important rule: keep it simple.<br>While working on the dev environment, there are lots of guides tell me to install all kinds of plugins/extensions, change this and that settings.<br>Eventually, it almost proves to be unnecessary. Just do what’s really necessary, and leave others until we really have to do it.</p>
+<p>That’s it, and enjoy coding in Go!</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/09/06/2020-09-06-golang-wsl-and-vscode/">Expand All >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-openglredbook" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -983,91 +1069,6 @@ vex_data(right)->vex_shader->tess_control(right)->tess_eval(right)->geo_shader->
 
 
   
-    <article id="post-2014-04-04-program-development-and-sometimes-have-to-trust-your-instincts" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/04/04/2014-04-04-program-development-and-sometimes-have-to-trust-your-instincts/">程式開發有時得相信你的直覺</a>
-    </h1>
-  
-
-        
-        <a href="/2014/04/04/2014-04-04-program-development-and-sometimes-have-to-trust-your-instincts/" class="archive-article-date">
-  	<time datetime="2014-04-04T00:02:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2014-04-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>我在做遊戲的效能調教時發生了一個小故事</p>
-<p>故事是這樣開始的</p>
-<p>我的遊戲功能已經完成<br>測試回報的問題也修完了<br>（當然有少數做不出來，或是難以驗證是否解決的問題被安靜的放在一邊，身為程式人員的你懂的）</p>
-<p>於是我決定來做個最佳化：效能調教<br>效能調教的第一件事情就是要可量測的數字<br>可以比較調教前與調教後的差異<br>（這件事再重要不過，所以我要再講一次，先有『可量測的數據』，才有做最佳化的理由和依據）</p>
-<p>我感覺現有的架構 JNI 呼叫很多（<a href="#note1">註1</a>）<br>當然憑感覺還不夠<br>要有數據<br>於是我在 native 層呼叫 Java 的地方都去累加一個 counter<br>然後每一秒去抓一次 counter 的值 show 出來看：</p>
-<p>147<br>215<br>215<br>63</p>
-<p>結果大概是這樣，你覺得如何？<br>直覺告訴我太少了</p>
-<p>一秒鐘遊戲大約可以畫 30 - 60 格的畫面（視機器的速度而定）<br>每格畫面少則 10 個物件 多則 40 - 50 個物件要畫<br>每秒鐘光畫東西就應該要有上千個 JNI 呼叫才對</p>
-<p>一定是有大量的 JNI 呼叫沒有累加到 counter<br>第一個直覺告訴我</p>
-<p>於是我驗證這個直覺<br>方法是把每個 JNI 呼叫的地方都 log 出來</p>
-<p>結果不得了<br>JNI 呼叫多到光 log 就讓開發環境快當掉<br>絕不是像數字告訴我的<br>每秒一兩百個 JNI 呼叫而已</p>
-<p>於是仔細檢查<br>但卻發現每個 JNI 呼叫都有累加到 counter</p>
-<p>由於遊戲架構的關係<br>以及遊戲本身還有大量圖片導致執行檔頗為龐大<br>其實這樣的 native 到 Java 層的 debug 非常花時間<br>也使我開始懷疑自己的直覺</p>
-<p>不過我堅持相信直覺<br>經過一番曲折<br>最後發現出問題的地方</p>
-<p>我是從 Java 層跟 native 層去要這個 counter value<br>在 Java 層呼叫的 function 這樣定義：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">native</span> <span class="keyword">int</span> <span class="title">GetCounter</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure></p>
-<p>在 native 層接手的 function 這樣定義：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">jboolean <span class="title">native_GetCounter</span><span class="params">(JNIEnv*, jobject)</span></span>;</span><br><span class="line">^^^^^^^^</span><br></pre></td></tr></table></figure></p>
-<p>好吧 問題終於浮現<br>在 native 定義的 counter 型別是整數（4 bytes）<br>native_GetCounter 卻把它截斷塞進 jboolean（1 byte）傳回去給 Java 層<br>導致 log 中看到的 counter 只有原來 counter 的第一個 byte<br>這也解釋了為什麼之前看到的值都不會超過 256（1 byte 能表示的最大值）</p>
-<p>至於你問我為什麼會犯這麼低級的錯誤<br>還不是 select-copy-paste 這偷懶的行為導致的後果</p>
-<p>可怕的是這段 code 可以通過編譯<br>C++ compiler 與 Java compiler 兩個人只管自己的 code<br>不會去管 JNI 橋接這段有沒有發生資料截斷</p>
-<p>改好之後再 log 一次：</p>
-<p>14771<br>15686<br>16556<br>…</p>
-<p>Well 這比較接近我的直覺<br>一秒鐘一萬五千次左右的 JNI call<br>顯然有不少最佳化的空間了</p>
-<p><hr><br><a name="note1">註1</a>：我們遊戲的架構，簡單講，主要程式是用 Lua 寫成，Lua 在 Android native 層跑，Lua 如果要畫圖，就會透過 JNI 呼叫 Java 使用 OpenGL API 畫圖。由於每格畫面都有許多物件要畫，因此在最佳化之前，每格畫面都有許多 JNI 呼叫。更可怕的是，每個物件要畫之前，還需要不少調整，例如平移放大縮小，這些都又是一個一個 JNI 呼叫去完成的，因此會累積非常多的 JNI 呼叫。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2014/04/04/2014-04-04-program-development-and-sometimes-have-to-trust-your-instincts/">Expand All >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1082,7 +1083,7 @@ vex_data(right)->vex_shader->tess_control(right)->tess_eval(right)->geo_shader->
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2019 Michael Wang
+    		&copy; 2020 Michael Wang
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten

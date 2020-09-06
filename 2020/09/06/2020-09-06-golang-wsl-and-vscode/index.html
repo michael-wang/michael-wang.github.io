@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://michael-wang.github.io">
-  <title>Archives: 2013/12 | Michael Wang&#39;s Blog</title>
+  <title>Golang, WSL, and Vscode | Michael Wang&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Software engineer, crypto fund manager, gamer.">
+  <meta name="description" content="Programming Go under Windows 10 with WSL and vscode has becoming a top choice for me. Reasons being:  Vscode is my top editor choice in recent years. Before vscode, it was vim. With vscode, I can even">
 <meta name="keywords" content="Golang, Dart, Flutter, Bitcoin.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Michael Wang&#39;s Blog">
-<meta property="og:url" content="https://michael-wang.github.io/archives/2013/12/index.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Golang, WSL, and Vscode">
+<meta property="og:url" content="https://michael-wang.github.io/2020/09/06/2020-09-06-golang-wsl-and-vscode/index.html">
 <meta property="og:site_name" content="Michael Wang&#39;s Blog">
-<meta property="og:description" content="Software engineer, crypto fund manager, gamer.">
+<meta property="og:description" content="Programming Go under Windows 10 with WSL and vscode has becoming a top choice for me. Reasons being:  Vscode is my top editor choice in recent years. Before vscode, it was vim. With vscode, I can even">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2020-09-06T14:30:16.261Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Michael Wang&#39;s Blog">
-<meta name="twitter:description" content="Software engineer, crypto fund manager, gamer.">
+<meta name="twitter:title" content="Golang, WSL, and Vscode">
+<meta name="twitter:description" content="Programming Go under Windows 10 with WSL and vscode has becoming a top choice for me. Reasons being:  Vscode is my top editor choice in recent years. Before vscode, it was vim. With vscode, I can even">
   
     <link rel="alternative" href="/atom.xml" title="Michael Wang&#39;s Blog" type="application/atom+xml">
   
@@ -144,49 +145,157 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-2020-09-06-golang-wsl-and-vscode" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2013" class="archive-year">2013</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2013/12/21/2013-12-21-what-this-era-of-uncertainty/" class="archive-article-date">
-  	<time datetime="2013-12-21T01:20:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2013-12-21</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2013/12/21/2013-12-21-what-this-era-of-uncertainty/">身為這個什麼都不確定的年代的軟體開發人員</a>
+    <h1 class="article-title" itemprop="name">
+      Golang, WSL, and Vscode
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
+        
+        <a href="/2020/09/06/2020-09-06-golang-wsl-and-vscode/" class="archive-article-date">
+  	<time datetime="2020-09-06T13:34:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-06</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Programming <a href="https://golang.org/" target="_blank" rel="noopener">Go</a> under Windows 10 with <a href="https://docs.microsoft.com/windows/wsl/about" target="_blank" rel="noopener">WSL</a> and <a href="https://code.visualstudio.com/" target="_blank" rel="noopener">vscode</a> has becoming a top choice for me. Reasons being:</p>
+<ol>
+<li>Vscode is my top editor choice in recent years. Before vscode, it was vim. With vscode, I can even enable <a href="https://marketplace.visualstudio.com/items?itemName=vscodevim.vim" target="_blank" rel="noopener">Vim</a> within it.</li>
+<li>The eco system of vscode’s <a href="https://marketplace.visualstudio.com/" target="_blank" rel="noopener">Marketplace</a> is very healthy. Extensions are good enough for me to work on lots of topics.</li>
+<li>With WSL, I can work in Linux under Windows, while coding with vscode, the best combination within my experience.</li>
+</ol>
+<h2 id="So-what’s-the-problem"><a href="#So-what’s-the-problem" class="headerlink" title="So what’s the problem?"></a>So what’s the problem?</h2><p>I got 2 issues trying to setup the environment described above:</p>
+<ol>
+<li>How to setup Go cleanly? Do I need <a href="https://github.com/moovweb/gvm" target="_blank" rel="noopener">gvm</a>? What’s the proper path for $GOPATH?</li>
+<li>The extension of <a href="https://marketplace.visualstudio.com/items?itemName=golang.go" target="_blank" rel="noopener">Go</a> is a must have, but I just can’t install extension while vscode is remotely connected to WSL.</li>
+</ol>
+<p>So I figured out the best steps to steup the environment, and would like to record here, which may be able to help others.</p>
+<h2 id="Prepare-WSL2"><a href="#Prepare-WSL2" class="headerlink" title="Prepare WSL2"></a>Prepare WSL2</h2><p><a href="https://docs.microsoft.com/zh-tw/windows/wsl/install-win10" target="_blank" rel="noopener">Follow the steps</a> to enable WSL 2. My choice of Linux is Ubuntu 18.04.</p>
+<p>Notice: I strongly recommend a good terminal to access WSL, and I find <a href="https://www.microsoft.com/en-us/p/windows-terminal/9n0dx20hk701?activetab=pivot:overviewtab" target="_blank" rel="noopener">Windows Terminal</a> is becoming a good choice for me.</p>
+<h2 id="Install-Go-in-WSL"><a href="#Install-Go-in-WSL" class="headerlink" title="Install Go in WSL"></a>Install Go in WSL</h2><p>Just follow the <a href="https://golang.org/doc/install" target="_blank" rel="noopener">official guide</a> to install Go under Linux.</p>
+<p>Notice: I need sudo to put files to /usr/local, like this: <code>sudo -C /usr/local -xzf xxx.tar.gz</code>.</p>
+<p>I myself follow Go convention, to let $GOPATH points to <code>$HOME/go</code>, and put my source code to <code>$HOME/go/src</code>. And besure to use go module. Make sure you understand everything of the guide: <a href="https://golang.org/doc/code.html" target="_blank" rel="noopener">How to Write Go Code</a>. Trust me, it saves a lot of pain.</p>
+<h2 id="Code-with-Vscode"><a href="#Code-with-Vscode" class="headerlink" title="Code with Vscode"></a>Code with Vscode</h2><p>Here comes the tricky part. I can open vscode under WSL by <code>code .</code>. But I always failed to install the Go extension, which is a must have. In my case (with cable network, not wifi), it has something to do with network’s MTU setting under WSL.</p>
+<p><code>sudo ifconfig eth0 mtu 1400</code><br>(You may need to change 1400 to other value in your case.)</p>
+<p>Credit goes to <a href="https://github.com/microsoft/vscode-remote-release/issues/3152" target="_blank" rel="noopener">this issue report</a>. Once again, a healthy eco system is very important, so there are people answering all kinds of weired question I may encounter.</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>To this point, you already be able to coding in Golang under WSL with vscode.</p>
+<p>I would like to remind a small but important rule: keep it simple.<br>While working on the dev environment, there are lots of guides tell me to install all kinds of plugins/extensions, change this and that settings.<br>Eventually, it almost proves to be unnecessary. Just do what’s really necessary, and leave others until we really have to do it.</p>
+<p>That’s it, and enjoy coding in Go!</p>
 
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://michael-wang.github.io/2020/09/06/2020-09-06-golang-wsl-and-vscode/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2019/02/28/openglredbook/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">openglredbook</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -209,8 +318,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
