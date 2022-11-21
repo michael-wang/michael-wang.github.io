@@ -64,6 +64,7 @@
 
               <li><a href="/">Home</a></li>
               <li><a href="/resume/resume.html">Resume/CV</a></li>
+              <li><a href="/practice/index.html">修行</a></li>
 
             </ul>
           </nav>
@@ -190,7 +191,8 @@
                   <ol>
                     <li>Vscode is my choice of editor in recent years. Before vscode, it was vim. Now I can even enable
                       <a href="https://marketplace.visualstudio.com/items?itemName=vscodevim.vim" target="_blank"
-                        rel="noopener">Vim</a> within vscode!</li>
+                        rel="noopener">Vim</a> within vscode!
+                    </li>
                     <li>The eco system of vscode’s <a href="https://marketplace.visualstudio.com/" target="_blank"
                         rel="noopener">Marketplace</a> is very healthy. Extensions are good enough for me to work on
                       lots of topics.</li>
@@ -221,7 +223,8 @@
                   <p>Just follow the <a href="https://golang.org/doc/install" target="_blank" rel="noopener">official
                       guide</a> to install Go under Linux.</p>
                   <p>Notice: I need sudo to put files to /usr/local, like this:
-                    <code>sudo -C /usr/local -xzf xxx.tar.gz</code>.</p>
+                    <code>sudo -C /usr/local -xzf xxx.tar.gz</code>.
+                  </p>
                   <p>I myself follow Go convention, to let $GOPATH points to <code>$HOME/go</code>, and put my source
                     code to <code>$HOME/go/src</code>. And besure to use go module. Make sure you understand everything
                     of the guide: <a href="https://golang.org/doc/code.html" target="_blank" rel="noopener">How to Write
@@ -435,7 +438,8 @@
                     </table>
                   </figure>
                   <p>Notice the sample code mistakenly use <code>glGenVertexArrays</code> instead of intended
-                    <code>glCreateVertexArrays</code>, I fixed it in golang version.</p>
+                    <code>glCreateVertexArrays</code>, I fixed it in golang version.
+                  </p>
                   <p>After we created the (vertex array) objects, we have to bind it so they can be ‘active’, whatever
                     active means. For now we accept in OpenGL only active objects can be used to draw things.</p>
                   <p>Another concept to understand, is that vertex array objects do not hold real data that we use to
@@ -468,7 +472,8 @@
                     </table>
                   </figure>
                   <p>Notice the sample code use <code>glBufferStorage</code> instead of
-                    <code>glNamedBufferStorage</code>, I fixed it in golang version.</p>
+                    <code>glNamedBufferStorage</code>, I fixed it in golang version.
+                  </p>
                   <p>The value of the data is worth noticing. They are all in range [-1, 1], it’s called
                     normalized-device coordinates. More on this in later chapters.</p>
                   <h2 id="The-Shader-Program"><a href="#The-Shader-Program" class="headerlink"
@@ -510,7 +515,8 @@
                   <p>Let’s try to guess what’s going on here. First it choose a version (450). Then it looks like
                     declare a variable named <code>vPosition</code> of type vec4, which I guess is vector of four
                     elements. In the main function, we set value of vPosition to a variable called
-                    <code>gl_Position</code>.</p>
+                    <code>gl_Position</code>.
+                  </p>
                   <p>Notice the point data we passed in only contains 2 coordinates:</p>
                   <figure class="highlight go">
                     <table>
@@ -545,7 +551,8 @@
                   </figure>
                   <p>Last thing to notice about the vertex shader source code, is the <code>gl_Position</code> variable.
                     It’s defined by OpenGL (all begin with <code>gl_</code> prefix). And all we do is copy
-                    <code>vPosition</code> to it.</p>
+                    <code>vPosition</code> to it.
+                  </p>
                   <p>Next let’s turn on to fragment shader source code:</p>
                   <figure class="highlight c">
                     <table>
@@ -571,7 +578,8 @@
                     and bind in early part of the second init function. So call to <code>glVertexAttribPointer</code>
                     imply we already bind one vertex array object. To modify state of un-binded vertex array object, we
                     have to use another set of APIs: <code>glEnableVertexArrayAttrib</code>,
-                    <code>glVertexArrayAttribFormat</code>, <code>glVertexArrayVertexBuffers</code>.</p>
+                    <code>glVertexArrayAttribFormat</code>, <code>glVertexArrayVertexBuffers</code>.
+                  </p>
                   <p>Now everything all set, we can do the drawing:<br>
                   <figure class="highlight go">
                     <table>
@@ -757,7 +765,8 @@ vex_data(right)->vex_shader->tess_control(right)->tess_eval(right)->geo_shader->
                   </figure>
                   <p>這邊可以看到 CSS 檔案的指示是以 <code>*=</code> 作為開頭，它一樣要求把目前所在目錄底下所有的 .css 檔案都涵括進來。這邊特別使用
                     <code>require_self</code>，雖然 application.css 已經在 <code>require_tree .</code> 當中被包含進來了，然而用
-                    <code>require_self</code> 再一次包含這個檔案，其結果是定義在 application.css 內的 CSS 會覆蓋掉之前所有檔案定義的。</p>
+                    <code>require_self</code> 再一次包含這個檔案，其結果是定義在 application.css 內的 CSS 會覆蓋掉之前所有檔案定義的。
+                  </p>
                   <p>最後，宣告檔不限於 Rails 幫我們產生的這兩個，例如我們可以定義 asset/javascripts/admin.js 跟
                     asset/stylesheets/admin.css，裡頭只包含跟管理相關需要的檔案，作為模組化的方法，此時在 view 中可以這樣使用這兩個宣告檔：</p>
                   <figure class="highlight plain">
@@ -810,7 +819,8 @@ vex_data(right)->vex_shader->tess_control(right)->tess_eval(right)->geo_shader->
                   </figure>
                   <p>當這個 some.css.erb 需要被用到時，asset pipeline 會先把它當成 embedded ruby 檔案來處理，於是把
                     <code>image-url(&quot;image.png&quot;)</code> 替換成該影像最終的路徑（很長包含指紋的那個），拿掉 .erb 副檔名，然後發現副檔名變成 .css，即是
-                    client 要求的檔案。</p>
+                    client 要求的檔案。
+                  </p>
                   <p>這邊要注意前置處理的順序，是按照副檔名從右到左依序處理，例如 some.css.coffee.erb 會先當成 erb 檔處理過，再交給 CoffeeScript 處理，反過來就不行，因為
                     CoffeeScript 看不懂嵌入的 Ruby 程式碼。</p>
                   <h2 id="設定"><a href="#設定" class="headerlink" title="設定"></a>設定</h2>
@@ -1461,7 +1471,8 @@ vex_data(right)->vex_shader->tess_control(right)->tess_eval(right)->geo_shader->
                   <p>由訊息可以判斷 JVM 找不到 ToStringBuilder 這個 class，它應該以 .jar 的形式存在電腦上的某個位置，但是我們沒有告訴 JVM 應該去哪裏找這個 .jar。</p>
                   <p>其實 gradle 有幫我們把這個 .jar 下載（位置在 <code>~/.gradle/caches/</code> 裡面搜尋
                     <code>commons-lang3-3.4.jar</code> 就有），否則沒這個檔案連 compile 都會出問題。<strong>但是 gradle 只負責幫我們 build，它不管執行時期
-                      JVM 要去哪裡找這個 .jar。</strong></p>
+                      JVM 要去哪裡找這個 .jar。</strong>
+                  </p>
                   <p>因此最直接的解法，是找到這個檔案，把路徑告訴 JVM：</p>
                   <figure class="highlight plain">
                     <table>
@@ -1491,7 +1502,8 @@ vex_data(right)->vex_shader->tess_control(right)->tess_eval(right)->geo_shader->
                     </table>
                   </figure>
                   <p>簡單說，我們請 gradle 在進行 build 這項工作的時候，幫個忙，把 dependency libraries 都複製一份，到
-                    <code>$buildDir/libs</code>，然後我們就可以這樣執行程式：</p>
+                    <code>$buildDir/libs</code>，然後我們就可以這樣執行程式：
+                  </p>
                   <figure class="highlight plain">
                     <table>
                       <tr>
