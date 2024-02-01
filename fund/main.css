@@ -208,7 +208,7 @@ td {
 
 @media (max-width: 750px) {
     body {
-        font-size: 15px;
+        font-size: 20px;
     }
 
     #menu ul.links {
@@ -218,7 +218,7 @@ td {
 
 @media (max-width: 615px) {
     body {
-        font-size: 13px;
+        font-size: 18px;
     }
 
     #menu {
